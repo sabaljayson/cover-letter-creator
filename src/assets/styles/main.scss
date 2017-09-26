@@ -6,11 +6,36 @@ body{
 	padding: 0;
 
 	font: normal 10px/18px $default-font;
-	background: url('../images/desk.jpg') center center / cover no-repeat #222;
+	background: url('../images/desk.jpg') right center / cover no-repeat #222;
 
-	@media screen and (min-width: 640px) {
+	@include breakpoint(sm){
 		font-size: 14px;
+	background-position: center center;
 	}
+}
+
+.logo{
+	position: absolute;
+	top: 1vh;
+	z-index: 10;
+	text-shadow: 0 1px 0px rgba(0,0,0,.4);
+	color: white;
+
+	.top{
+		display: block;
+		font-weight: 400;
+		text-transform: uppercase;
+		letter-spacing: .1em;
+	}
+
+	.bottom{
+		font-family: $heading-font;
+		font-size: 2.1em;
+	}
+}
+
+h1, h2, h3, h4, h5, h6{
+	font-family: $heading-font;
 }
 
 h1{
@@ -24,12 +49,18 @@ h3{
 }
 
 .container{
-	height: 92vh;
-	padding: 4vh 4vw;
+	min-height: 89vh;
+	padding: 7vh 4vw 4vh;
 	display: flex;
 	align-items: stretch;
 	max-width: 1000px;
 	margin: 0 auto;
+
+	@include breakpoint(xs){
+		flex-direction: column-reverse;
+		justify-content: flex-end;
+	}
+}
 
 #change-template{
 	margin-bottom: 2em;
@@ -38,11 +69,15 @@ h3{
 #letter{
 	background: #f5f5f5;
 	box-shadow: 0px 1px 5px rgba(0,0,0,.25);
-	background: #fff;
+	background: white;
 	width: 50%;
 	position: relative;
 	padding: 5vh 3vw;
 	flex: 1 0 auto;
+
+	@include breakpoint(xs){
+		width: auto;
+	}
 
 	.replace-me{
 		background: #d4cccb;
@@ -63,8 +98,7 @@ h3{
 
 #form{
 	padding: 4vh 5vw;
-	background: rgba(0,0,0,.5);
-	color: #fff;
+	background: rgba(255, 255, 255, .75);
 	margin: 2vh 0;
 	flex: 1 1 auto;
 
@@ -78,7 +112,7 @@ h3{
 		text-transform: uppercase;
 		font-size: .9em;
 		letter-spacing: .1em;
-		color: #dadada;
+		color: $brown;
 	}
 
 	fieldset{
@@ -88,12 +122,23 @@ h3{
 	}
 
 	input{
+		font-family: $default-font;
 		display: block;
-		background: rgba(255, 255, 255, .1);
+		background-color: transparentize($brown, .9);
 		border: none;
-		border-bottom: 1px solid white;
+		border-bottom: 1px solid $brown;
 		padding: .75em;
-		color: white;
-		width: 20vw;
+		width: calc(100% - 1.5em);
+		color: $brown;
+
+		&:focus,
+		&:active{
+			outline: none;
+			background-color: transparentize($brown, .8);
+		}
+
+		&::placeholder{
+			color: transparentize($brown, .5);
+		}
 	}
 }
