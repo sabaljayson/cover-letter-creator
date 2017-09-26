@@ -79,6 +79,7 @@ gulp.task('clean', function(cb) {
 // watch - watch for changes, livereload accordingly
 gulp.task('watch', function() {
     livereload.listen();
+    gulp.watch('src/assets/images/**/*.{png,jpg,gif}', ['images']);
     gulp.watch('src/assets/styles/**/*.scss', ['styles']);
     gulp.watch('src/assets/scripts/**/*.js', ['scripts']);
     gulp.watch('./src/**/*.{html,php,txt}', ['copyfiles']);
